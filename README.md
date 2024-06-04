@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+# Controle+
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Objetivo
+Aplicação frontend para consumir API REST da aplicação: https://github.com/DanielLucena/mercearia
 
-Currently, two official plugins are available:
+## Requisitos:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Paginas:
+- [ ] HomePage : Daniel 03/06-09/06
+  - [ ] Login
+  - [ ] Registrar
+- [ ] Pagina welcome padrao
+- [ ] LandingPage do gerente (navbar gerente + welcome)
+  - [ ] Fornecedor : Daniel 03/06-09/06
+    - [ ] pagina de listagem
+    - [ ] pagina de formulario(post, put)
+  - [ ] Produto
+    - [ ] pagina de listagem
+    - [ ] pagina de formulario(post, put)
+  - [ ] Cliente 
+    - [ ] pagina de listagem
+    - [ ] pagina de formulario(post, put)
+  - [ ] Pedido
+    - [ ] pagina de listagem
+    - [ ] pagina de formulario(post, put)
+  - [ ] Pagamento
+    - [ ] pagina de listagem
+    - [ ] pagina de formulario(post, put)
+  - [ ] Funcionario : Gabriel 03/06-09/06
+    - [ ] pagina de listagem
+    - [ ] pagina de formulario(post, put)
+  - [ ] Remessa
+    - [ ] pagina de listagem
+    - [ ] pagina de formulario(post, put)
+- [ ] LandingPage do cliente (navbar cliente + welcome)
+  - [ ] Cliente (get, post)
+  - [ ] Pedido (get)
+  - [ ] Pagamento (get)
+  - [ ] produto (get)
+- [ ] LandingPage do caixa (navbar caixa + welcome)
+  - [ ] Pagamento (post)
+  - [ ] Pedido (post, post)
+  - [ ] Produto (get)
+  - [ ] Cliente (get)
+  - [ ] Funcionario (get)
+- [ ] LandingPage do repositor (navbar repositor + welcome)
+  - [ ] Produto (get)
+  - [ ] Funcionario (get)
+  - [ ] Remessa (get, post)
+  - [ ] Fornecedor (get)
 
-## Expanding the ESLint configuration
+obs: utilizar paginas criadas para gerente nas outras roles, porem alterando de acordo com suas permissões
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+##rodar 
 ```
+npm install
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+npm run dev
+```
