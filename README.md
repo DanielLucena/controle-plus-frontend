@@ -51,7 +51,7 @@ Paginas:
 
 obs: utilizar paginas criadas para gerente nas outras roles, porem alterando de acordo com suas permissões
 
-##rodar 
+## Rodar 
 ```
 npm install
 
