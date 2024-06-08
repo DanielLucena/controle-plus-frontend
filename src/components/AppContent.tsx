@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-
 import { request, setAuthHeader } from '../helpers/axios_helper';
 
 import Buttons from './Buttons';
 import AuthContent from './AuthContent';
 import LoginForm from './LoginForm';
 import WelcomeContent from './WelcomeContent';
+import FuncionarioList from './FuncionarioList';
+import NavBar from './NavBar';
 
 const AppContent: React.FC = () => {
   const [componentToShow, setComponentToShow] = useState<string>('welcome');
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const login = () => {
     setComponentToShow('login');
@@ -17,6 +19,7 @@ const AppContent: React.FC = () => {
   const logout = () => {
     setComponentToShow('welcome');
     setAuthHeader(null);
+    setIsLoggedIn(false);
   };
 
   const onLogin = async (e: React.FormEvent<HTMLFormElement>, username: string, senha: string) => {
@@ -27,6 +30,7 @@ const AppContent: React.FC = () => {
         senha: senha,
       });
       setAuthHeader(response.data.token);
+      setIsLoggedIn(true);
       setComponentToShow('messages');
     } catch (error) {
       setAuthHeader(null);
@@ -42,7 +46,7 @@ const AppContent: React.FC = () => {
         senha: senha,
         role: role,
       });
-      onLogin(e, response.data.login,senha);
+      onLogin(e, response.data.login, senha);
     } catch (error) {
       setAuthHeader(null);
       setComponentToShow('welcome');
@@ -51,11 +55,13 @@ const AppContent: React.FC = () => {
 
   return (
     <>
+      {isLoggedIn && <NavBar onNavigate={setComponentToShow} />}
       <Buttons login={login} logout={logout} />
 
       {componentToShow === 'welcome' && <WelcomeContent />}
       {componentToShow === 'login' && <LoginForm onLogin={onLogin} onRegister={onRegister} />}
       {componentToShow === 'messages' && <AuthContent />}
+      {componentToShow === 'funcionarios' && <FuncionarioList />}
     </>
   );
 };
