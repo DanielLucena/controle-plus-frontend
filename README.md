@@ -16,14 +16,14 @@ Paginas:
   - [ ] Fornecedor : Daniel 03/06-09/06
     - [x] pagina de listagem
     - [x] pagina de formulario(post, put)
-  - [ ] Produto
+  - [ ] Produto : Daniel 10/06 - 16/06
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)
-  - [ ] Cliente
+  - [ ] Cliente : Gabriel 10/06 - 16/06
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)
   - [ ] Pedido
-    - [ ] pagina de listagem
+    - [ ] pagina de listagem : Daniel 10/06 - 16/06
     - [ ] pagina de formulario(post, put)
   - [ ] Pagamento
     - [ ] pagina de listagem
