@@ -1,23 +1,25 @@
 # Controle+
 
 ## Objetivo
+
 Aplicação frontend para consumir API REST da aplicação: https://github.com/DanielLucena/mercearia
 
 ## Requisitos:
 
 Paginas:
+
 - [ ] HomePage : Daniel 03/06-09/06
   - [ ] Login
   - [ ] Registrar
 - [ ] Pagina welcome padrao
 - [ ] LandingPage do gerente (navbar gerente + welcome)
   - [ ] Fornecedor : Daniel 03/06-09/06
-    - [ ] pagina de listagem
-    - [ ] pagina de formulario(post, put)
+    - [x] pagina de listagem
+    - [x] pagina de formulario(post, put)
   - [ ] Produto
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)
-  - [ ] Cliente 
+  - [ ] Cliente
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)
   - [ ] Pedido
@@ -51,7 +53,8 @@ Paginas:
 
 obs: utilizar paginas criadas para gerente nas outras roles, porem alterando de acordo com suas permissões
 
-## Rodar 
+## Rodar
+
 ```
 npm install
 

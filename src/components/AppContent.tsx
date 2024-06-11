@@ -7,6 +7,7 @@ import LoginForm from './LoginForm';
 import WelcomeContent from './WelcomeContent';
 import FuncionarioList from './FuncionarioList';
 import NavBar from './NavBar';
+import FornecedorPage from '../pages/FornecedorPage';
 
 const AppContent: React.FC = () => {
   const [componentToShow, setComponentToShow] = useState<string>('welcome');
@@ -62,6 +63,7 @@ const AppContent: React.FC = () => {
       {componentToShow === 'login' && <LoginForm onLogin={onLogin} onRegister={onRegister} />}
       {componentToShow === 'messages' && <AuthContent />}
       {componentToShow === 'funcionarios' && <FuncionarioList />}
+      {componentToShow === 'fornecedores' && <FornecedorPage />}
     </>
   );
 };
