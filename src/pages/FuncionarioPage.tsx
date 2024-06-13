@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import FuncionarioForm from './FuncionarioForm';
+import React, { useState, useEffect, useReducer } from 'react';
+import FuncionarioForm from './forms/FuncionarioForm';
+import { request, setAuthHeader } from '../helpers/axios_helper';
 
 interface Funcionario {
   id: number;
@@ -7,19 +8,50 @@ interface Funcionario {
   funcao: 'gerente' | 'caixa';
 }
 
-const FuncionarioList: React.FC = () => {
-  const [funcionarios, setFuncionarios] = useState<Funcionario[]>([
-    { id: 1, nome: 'João Silva', funcao: 'gerente' },
-    { id: 2, nome: 'Maria Souza', funcao: 'caixa' },
-  ]);
+const FuncionarioPage: React.FC = () => {
+  const [funcionarios, setFuncionarios] = useState<Funcionario[]>([]);
+  const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
   const [showForm, setShowForm] = useState<boolean>(false);
   const [editFuncionario, setEditFuncionario] = useState<Funcionario | null>(null);
 
-  const addOrEditFuncionario = (funcionario: Funcionario) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await request('GET', '/funcionario', {});
+        setFuncionarios(response.data);
+      } catch (error: any) {
+        if (error.response && error.response.status === 401) {
+          setAuthHeader(null);
+        } else {
+          console.error(error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [reducerValue]);
+
+  const addOrEditFuncionario = async (funcionario: Funcionario) => {
     if (editFuncionario) {
-      setFuncionarios(funcionarios.map((f) => (f.id === funcionario.id ? funcionario : f)));
+      try {
+        await request('PUT', "/funcionario/" + funcionario.id, {
+          nome: funcionario.nome,
+          funcao: funcionario.funcao
+        });
+        forceUpdate();
+      } catch (error) {
+        console.error(error);
+      }
     } else {
-      setFuncionarios([...funcionarios, { ...funcionario, id: funcionarios.length + 1 }]);
+      try {
+        await request('POST', '/funcionario', {
+          nome: funcionario.nome,
+          funcao: funcionario.funcao
+        });
+        forceUpdate();
+      } catch (error) {
+        console.error(error);
+      }
     }
     setShowForm(false);
     setEditFuncionario(null);
@@ -54,10 +86,7 @@ const FuncionarioList: React.FC = () => {
               <td>{funcionario.nome}</td>
               <td>{funcionario.funcao}</td>
               <td>
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => handleEditButtonClick(funcionario)}
-                >
+                <button className="btn btn-secondary" onClick={() => handleEditButtonClick(funcionario)}>
                   Editar
                 </button>
               </td>
@@ -80,4 +109,4 @@ const FuncionarioList: React.FC = () => {
   );
 };
 
-export default FuncionarioList;
+export default FuncionarioPage;

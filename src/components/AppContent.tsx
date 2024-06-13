@@ -5,7 +5,7 @@ import Buttons from './Buttons';
 import AuthContent from './AuthContent';
 import LoginForm from './LoginForm';
 import WelcomeContent from './WelcomeContent';
-import FuncionarioList from './FuncionarioList';
+import FuncionarioPage from '../pages/FuncionarioPage';
 import NavBar from './NavBar';
 import FornecedorPage from '../pages/FornecedorPage';
 
@@ -62,7 +62,7 @@ const AppContent: React.FC = () => {
       {componentToShow === 'welcome' && <WelcomeContent />}
       {componentToShow === 'login' && <LoginForm onLogin={onLogin} onRegister={onRegister} />}
       {componentToShow === 'messages' && <AuthContent />}
-      {componentToShow === 'funcionarios' && <FuncionarioList />}
+      {componentToShow === 'funcionarios' && <FuncionarioPage />}
       {componentToShow === 'fornecedores' && <FornecedorPage />}
     </>
   );
