@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import FuncionarioForm from './forms/FuncionarioForm';
 import { request, setAuthHeader } from '../helpers/axios_helper';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles.css';
 
 interface Funcionario {
   id: number;
@@ -63,8 +65,13 @@ const FuncionarioPage: React.FC = () => {
   };
 
   const handleEditButtonClick = (funcionario: Funcionario) => {
-    setShowForm(true);
     setEditFuncionario(funcionario);
+    setShowForm(true);
+  };
+
+  const closeModal = () => {
+    setShowForm(false);
+    setEditFuncionario(null);
   };
 
   return (
@@ -100,10 +107,23 @@ const FuncionarioPage: React.FC = () => {
       </button>
 
       {showForm && (
-        <FuncionarioForm
-          addOrEditFuncionario={addOrEditFuncionario}
-          editFuncionario={editFuncionario}
-        />
+        <div className="modal fade show d-block modal-custom" tabIndex={-1} role="dialog" aria-labelledby="funcionarioModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="funcionarioModalLabel">{editFuncionario ? 'Editar Funcionário' : 'Adicionar Funcionário'}</h5>
+                <button type="button" className="btn-close" onClick={closeModal}></button>
+              </div>
+              <div className="modal-body">
+                <FuncionarioForm
+                  addOrEditFuncionario={addOrEditFuncionario}
+                  editFuncionario={editFuncionario}
+                  closeModal={closeModal}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
