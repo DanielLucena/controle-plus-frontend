@@ -28,9 +28,9 @@ Paginas:
   - [ ] Pagamento
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)
-  - [ ] Funcionario : Gabriel 03/06-09/06
-    - [ ] pagina de listagem
-    - [ ] pagina de formulario(post, put)
+  - [] Funcionario : Gabriel 03/06-09/06
+    - [x] pagina de listagem
+    - [x] pagina de formulario(post, put)
   - [ ] Remessa
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)
