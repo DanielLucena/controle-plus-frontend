@@ -19,18 +19,20 @@ Paginas:
   - [ ] Produto : Daniel 10/06 - 16/06
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)
-  - [ ] Cliente : Gabriel 10/06 - 16/06
-    - [ ] pagina de listagem
-    - [ ] pagina de formulario(post, put)
+  - [x] Cliente : Gabriel 10/06 - 16/06 (funcional, resta consertar OBS)
+    - [x] pagina de listagem
+    - [x] pagina de formulario(post, put)
+    - [ ] OBS: (estoura erro ao tentar editar somente nome, dizendo que já tem o cpf cadastrado)
   - [ ] Pedido
     - [ ] pagina de listagem : Daniel 10/06 - 16/06
     - [ ] pagina de formulario(post, put)
   - [ ] Pagamento
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)
-  - [] Funcionario : Gabriel 03/06-09/06
+  - [x] Funcionario : Gabriel 03/06-09/06 (funcional, resta consertar OBS)
     - [x] pagina de listagem
     - [x] pagina de formulario(post, put)
+    - [ ] OBS: (resta adicionar FUNÇÃO do funcionario, tem apenas nome e id)
   - [ ] Remessa
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)

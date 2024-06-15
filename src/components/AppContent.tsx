@@ -8,6 +8,7 @@ import WelcomeContent from './WelcomeContent';
 import FuncionarioPage from '../pages/FuncionarioPage';
 import NavBar from './NavBar';
 import FornecedorPage from '../pages/FornecedorPage';
+import ClientePage from '../pages/ClientePage';
 
 const AppContent: React.FC = () => {
   const [componentToShow, setComponentToShow] = useState<string>('welcome');
@@ -64,6 +65,7 @@ const AppContent: React.FC = () => {
       {componentToShow === 'messages' && <AuthContent />}
       {componentToShow === 'funcionarios' && <FuncionarioPage />}
       {componentToShow === 'fornecedores' && <FornecedorPage />}
+      {componentToShow === 'clientes' && <ClientePage />}
     </>
   );
 };
