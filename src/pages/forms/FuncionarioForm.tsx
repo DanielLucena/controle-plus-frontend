@@ -9,9 +9,10 @@ interface Funcionario {
 interface FuncionarioFormProps {
   addOrEditFuncionario: (funcionario: Funcionario) => void;
   editFuncionario: Funcionario | null;
+  closeModal: () => void;
 }
 
-const FuncionarioForm: React.FC<FuncionarioFormProps> = ({ addOrEditFuncionario, editFuncionario }) => {
+const FuncionarioForm: React.FC<FuncionarioFormProps> = ({ addOrEditFuncionario, editFuncionario, closeModal }) => {
   const [nome, setNome] = useState('');
   const [funcao, setFuncao] = useState<'gerente' | 'caixa'>('gerente');
 
@@ -33,6 +34,7 @@ const FuncionarioForm: React.FC<FuncionarioFormProps> = ({ addOrEditFuncionario,
       addOrEditFuncionario(novoFuncionario);
       setNome('');
       setFuncao('gerente');
+      closeModal();
     }
   };
 
@@ -59,7 +61,7 @@ const FuncionarioForm: React.FC<FuncionarioFormProps> = ({ addOrEditFuncionario,
           <option value="gerente">Gerente</option>
           <option value="caixa">Caixa</option>
         </select>
-      </div>
+      </div><br/>
       <button type="submit" className="btn btn-success">
         {editFuncionario ? 'Salvar' : 'Adicionar'}
       </button>

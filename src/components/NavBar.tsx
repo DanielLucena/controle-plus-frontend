@@ -19,6 +19,9 @@ const NavBar: React.FC<NavBarProps> = ({ onNavigate }) => {
           <li className="nav-item">
             <button className="nav-link btn btn-link" onClick={() => onNavigate('fornecedores')}><b>Fornecedores</b></button>
           </li>
+          <li className="nav-item">
+            <button className="nav-link btn btn-link" onClick={() => onNavigate('clientes')}><b>Clientes</b></button>
+          </li>
         </ul>
       </div>
     </nav>
