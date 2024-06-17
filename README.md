@@ -13,7 +13,7 @@ Paginas:
   - [ ] Registrar
 - [ ] Pagina welcome padrao
 - [ ] LandingPage do gerente (navbar gerente + welcome)
-  - [ ] Fornecedor : Daniel 03/06-09/06
+  - [x] Fornecedor : Daniel 03/06-09/06
     - [x] pagina de listagem
     - [x] pagina de formulario(post, put)
   - [ ] Produto : Daniel 10/06 - 16/06

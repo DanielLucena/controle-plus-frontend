@@ -1,6 +1,8 @@
 import { useEffect, useReducer, useState } from "react";
 import ForncedorForm from "./forms/FornecedorForm";
 import { request, setAuthHeader } from "../helpers/axios_helper";
+import "./style/modal.css";
+import axios from "axios";
 
 interface Fornecedor {
   id: number;
@@ -29,8 +31,10 @@ function FornecedorPage() {
   }, [reducerValue]);
   const [showForm, setShowForm] = useState<boolean>(false);
   const [editFornecedor, setEditFornecedor] = useState<Fornecedor | null>(null);
+  const [alert, setAlert] = useState<string | null>(null);
 
   const addOrEditFornecedor = async (fornecedor: Fornecedor) => {
+    setAlert(null);
     if (editFornecedor) {
       try {
         await request("PUT", "/fornecedor/" + fornecedor.id, {
@@ -38,7 +42,11 @@ function FornecedorPage() {
         });
         forceUpdate();
       } catch (error) {
-        console.log(error);
+        let errorMessage = "not axios error";
+        if (axios.isAxiosError(error)) {
+          errorMessage = error.message + ": " + error.code;
+        }
+        setAlert(errorMessage);
       }
     } else {
       try {
@@ -47,16 +55,34 @@ function FornecedorPage() {
         });
         forceUpdate();
       } catch (error) {
-        console.log(error);
+        let errorMessage = "not axios error";
+        if (axios.isAxiosError(error)) {
+          errorMessage = error.message + ": " + error.code;
+        }
+        setAlert(errorMessage);
       }
     }
     setShowForm(false);
     setEditFornecedor(null);
   };
 
+  const deleteFornecedor = async (fornecedor: Fornecedor) => {
+    setAlert(null);
+    try {
+      await request("DELETE", "/fornecedor/" + fornecedor.id, {});
+      forceUpdate();
+    } catch (error) {
+      let errorMessage = "not axios error";
+      if (axios.isAxiosError(error)) {
+        errorMessage = error.message + ": " + error.code;
+      }
+      setAlert(errorMessage);
+    }
+  };
+
   const handleAddButtonClick = () => {
-    setShowForm(true);
     setEditFornecedor(null);
+    setShowForm(true);
   };
 
   const handleEditButtonClick = (forncedor: Fornecedor) => {
@@ -64,8 +90,35 @@ function FornecedorPage() {
     setEditFornecedor(forncedor);
   };
 
+  const handleDeleteButtonClick = (fornecedor: Fornecedor) => {
+    deleteFornecedor(fornecedor);
+  };
+
+  const handleCloseButtonClick = () => {
+    setShowForm(false);
+  };
+
+  if (showForm) {
+    document.body.classList.add("active-modal");
+  } else {
+    document.body.classList.remove("active-modal");
+  }
+
   return (
     <div className="container">
+      {alert && (
+        <div className="alert alert-danger alert-dismissible">
+          <button
+            type="button"
+            className="btn-close close-modal"
+            aria-label="Close"
+            onClick={() => {
+              setAlert(null);
+            }}
+          />
+          {alert}
+        </div>
+      )}
       <h2>Listagem de Funcionários</h2>
       <table className="table">
         <thead>
@@ -82,26 +135,43 @@ function FornecedorPage() {
               <td>{forncedor.nome}</td>
               <td>
                 <button
+                  type="button"
                   className="btn btn-secondary"
                   onClick={() => handleEditButtonClick(forncedor)}
                 >
                   Editar
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => handleDeleteButtonClick(forncedor)}
+                >
+                  Remover
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
       <button className="btn btn-primary" onClick={handleAddButtonClick}>
         Adicionar Novo Fornecedor
       </button>
-
       {showForm && (
-        <ForncedorForm
-          addOrEditForncedor={addOrEditFornecedor}
-          editForncedor={editFornecedor}
-        />
+        <div className="my-modal">
+          <div className="overlay" onClick={handleCloseButtonClick}></div>
+          <div className="my-modal-content">
+            <button
+              type="button"
+              className="btn-close close-modal"
+              aria-label="Close"
+              onClick={handleCloseButtonClick}
+            ></button>
+            <ForncedorForm
+              addOrEditForncedor={addOrEditFornecedor}
+              editForncedor={editFornecedor}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
