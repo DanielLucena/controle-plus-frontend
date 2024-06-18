@@ -8,10 +8,10 @@ Aplicação frontend para consumir API REST da aplicação: https://github.com/D
 
 Paginas:
 
-- [ ] HomePage : Daniel 03/06-09/06
-  - [ ] Login
-  - [ ] Registrar
-- [ ] Pagina welcome padrao
+- [x] HomePage : Daniel 03/06-09/06
+  - [x] Login
+  - [x] Registrar
+- [x] Pagina welcome padrao
 - [ ] LandingPage do gerente (navbar gerente + welcome)
   - [x] Fornecedor : Daniel 03/06-09/06
     - [x] pagina de listagem
@@ -23,10 +23,9 @@ Paginas:
     - [x] pagina de listagem
     - [x] pagina de formulario(post, put)
     - [ ] OBS: (estoura erro ao tentar editar somente nome, dizendo que já tem o cpf cadastrado)
-  - [ ] Pedido
-    - [ ] pagina de listagem : Daniel 10/06 - 16/06
-    - [ ] pagina de formulario(post, put)
-  - [ ] Pagamento
+  - [ ] Pedido : (apenas formulario de criação)
+    - [ ] pagina de formulario(post, put) : Daniel 10/06 - 16/06
+  - [ ] Pagamento : (listagem de pedidos com ação de pagar) Gabriel 18/06 - 24/06
     - [ ] pagina de listagem
     - [ ] pagina de formulario(post, put)
   - [x] Funcionario : Gabriel 03/06-09/06 (funcional, resta consertar OBS)
