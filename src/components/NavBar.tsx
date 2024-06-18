@@ -2,17 +2,15 @@ import React from 'react';
 
 type NavBarProps = {
   onNavigate: (page: string) => void;
+  isLoggedIn: boolean;
 };
 
-const NavBar: React.FC<NavBarProps> = ({ onNavigate }) => {
+const NavBar: React.FC<NavBarProps> = ({ onNavigate, isLoggedIn }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">Mercenaria</a>
+      <a className="navbar-brand btn btn-link" onClick={() => onNavigate(isLoggedIn ? 'loggedInWelcome' : 'welcome')}>Mercenaria</a>
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <button className="nav-link btn btn-link" onClick={() => onNavigate('welcome')}><b>Home</b></button>
-          </li>
           <li className="nav-item">
             <button className="nav-link btn btn-link" onClick={() => onNavigate('funcionarios')}><b>Funcionarios</b></button>
           </li>
