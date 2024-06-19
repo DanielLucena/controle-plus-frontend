@@ -20,6 +20,9 @@ const NavBar: React.FC<NavBarProps> = ({ onNavigate, isLoggedIn }) => {
           <li className="nav-item">
             <button className="nav-link btn btn-link" onClick={() => onNavigate('clientes')}><b>Clientes</b></button>
           </li>
+          <li className="nav-item">
+            <button className="nav-link btn btn-link" onClick={() => onNavigate('pagamento')}><b>Pagamento</b></button>
+          </li>
         </ul>
       </div>
     </nav>

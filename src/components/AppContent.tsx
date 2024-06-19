@@ -7,9 +7,10 @@ import LoginForm from './LoginForm';
 import WelcomeContent from './WelcomeContent';
 import LoggedInWelcomeContent from './LoggedInWelcomeContent';
 import FuncionarioPage from '../pages/FuncionarioPage';
-import NavBar from './NavBar';
 import FornecedorPage from '../pages/FornecedorPage';
 import ClientePage from '../pages/ClientePage';
+import PagamentoPage from '../pages/PagamentoPage';
+import NavBar from './NavBar';
 
 const AppContent: React.FC = () => {
     const [componentToShow, setComponentToShow] = useState<string>('welcome');
@@ -70,6 +71,7 @@ const AppContent: React.FC = () => {
             {componentToShow === 'funcionarios' && <FuncionarioPage />}
             {componentToShow === 'fornecedores' && <FornecedorPage />}
             {componentToShow === 'clientes' && <ClientePage />}
+            {componentToShow === 'pagamento' && <PagamentoPage />}
         </>
     );
 };
