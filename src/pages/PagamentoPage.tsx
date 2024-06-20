@@ -1,19 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { request, setAuthHeader } from '../helpers/axios_helper';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles.css';
-import PagamentoForm from "../pages/forms/PagamentoForm";
+import PagamentoForm from '../pages/forms/PagamentoForm';
 
 interface Pedido {
   id: number;
-  status: 'PENDENTE' | 'PAGO' | 'CANCELADO';
-  itens: string[];
+  cpfCliente: string;
+  itens: {
+    codigoProduto: number;
+    nome: string;
+    quantidade: number;
+    preco: number;
+  }[];
+  desconto: number;
   valorTotal: number;
+  status: 'PENDENTE' | 'PAGO';
 }
 
 const PagamentoPage: React.FC = () => {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
-  const [showPedido, setShowPedido] = useState<Pedido | null>(null);
+  const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
+  const [selectedPedido, setSelectedPedido] = useState<Pedido | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,10 +39,24 @@ const PagamentoPage: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [reducerValue]);
+
+  const handleViewPedidoClick = (pedido: Pedido) => {
+    setSelectedPedido(pedido);
+    setShowModal(true);
+  };
 
   const closeModal = () => {
-    setShowPedido(null);
+    setShowModal(false);
+    setSelectedPedido(null);
+  };
+
+  const updatePedidoStatus = (pedidoId: number) => {
+    setPedidos((prevPedidos) =>
+      prevPedidos.map((pedido) =>
+        pedido.id === pedidoId ? { ...pedido, status: 'PAGO' } : pedido
+      )
+    );
   };
 
   return (
@@ -42,41 +65,54 @@ const PagamentoPage: React.FC = () => {
       <table className="table">
         <thead>
           <tr>
-            <th>Pedidos</th>
+            <th>ID do Pedido</th>
+            <th>CPF do Cliente</th>
             <th>Status</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           {pedidos.map((pedido) => (
             <tr key={pedido.id}>
-              <td>
-                <button className="btn btn-info" onClick={() => setShowPedido(pedido)}>Ver Pedido</button>
-              </td>
+              <td>{pedido.id}</td>
+              <td>{pedido.cpfCliente}</td>
               <td>{pedido.status}</td>
+              <td>
+                <button className="btn btn-secondary" onClick={() => handleViewPedidoClick(pedido)}>
+                  Ver Pedido
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {showPedido && (
+      {showModal && selectedPedido && (
         <div className="modal fade show d-block modal-custom" tabIndex={-1} role="dialog" aria-labelledby="pedidoModalLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="pedidoModalLabel">Itens do Pedido</h5>
+                <h5 className="modal-title" id="pedidoModalLabel">Detalhes do Pedido</h5>
                 <button type="button" className="btn-close" onClick={closeModal}></button>
               </div>
               <div className="modal-body">
+                <h6>Itens do Pedido</h6>
                 <ul>
-                  {showPedido.itens.map((item, index) => (
-                    <li key={index}>{item}</li>
+                  {selectedPedido.itens.map((item) => (
+                    <li key={item.codigoProduto}>
+                      {item.nome} - Quantidade: {item.quantidade} - Preço: R$ {item.preco.toFixed(2)}
+                    </li>
                   ))}
                 </ul>
-                {showPedido.status === 'PENDENTE' && (
-                  <>
-                    <hr />
-                    <PagamentoForm pedido={showPedido} closeModal={closeModal} />
-                  </>
+                {selectedPedido.status === 'PENDENTE' && (
+                  <PagamentoForm 
+                    pedido={selectedPedido} 
+                    closeModal={closeModal} 
+                    onPaymentConfirmed={() => {
+                      updatePedidoStatus(selectedPedido.id);
+                      closeModal();
+                    }} 
+                  />
                 )}
               </div>
             </div>
