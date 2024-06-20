@@ -1,33 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-interface Forncedor {
+interface Fornecedor {
   id: number;
   nome: string;
 }
 
-interface ForncedorFormProps {
-  addOrEditForncedor: (forncedor: Forncedor) => void;
-  editForncedor: Forncedor | null;
+interface FornecedorFormProps {
+  addOrEditFornecedor: (fornecedor: Fornecedor) => void;
+  editFornecedor: Fornecedor | null;
 }
 
-const ForncedorForm: React.FC<ForncedorFormProps> = ({ addOrEditForncedor, editForncedor }) => {
-  const [nome, setNome] = useState('');
+const FornecedorForm: React.FC<FornecedorFormProps> = ({
+  addOrEditFornecedor,
+  editFornecedor,
+}) => {
+  const [nome, setNome] = useState("");
 
   useEffect(() => {
-    if (editForncedor) {
-      setNome(editForncedor.nome);
+    if (editFornecedor) {
+      setNome(editFornecedor.nome);
     }
-  }, [editForncedor]);
+  }, [editFornecedor]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (nome ) {
-      const novoForncedor: Forncedor = {
-        id: editForncedor ? editForncedor.id : 0,
+    if (nome) {
+      const novoFornecedor: Fornecedor = {
+        id: editFornecedor ? editFornecedor.id : 0,
         nome,
       };
-      addOrEditForncedor(novoForncedor);
-      setNome('');
+      addOrEditFornecedor(novoFornecedor);
+      setNome("");
     }
   };
 
@@ -44,10 +47,10 @@ const ForncedorForm: React.FC<ForncedorFormProps> = ({ addOrEditForncedor, editF
         />
       </div>
       <button type="submit" className="btn btn-success">
-        {editForncedor ? 'Salvar' : 'Adicionar'}
+        {editFornecedor ? "Salvar" : "Adicionar"}
       </button>
     </form>
   );
 };
 
-export default ForncedorForm;
+export default FornecedorForm;

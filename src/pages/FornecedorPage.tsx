@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import ForncedorForm from "./forms/FornecedorForm";
+import FornecedorForm from "./forms/FornecedorForm";
 import { request, setAuthHeader } from "../helpers/axios_helper";
 import "./style/modal.css";
 import axios from "axios";
@@ -10,7 +10,7 @@ interface Fornecedor {
 }
 
 function FornecedorPage() {
-  const [forncedores, setFornecedores] = useState<Fornecedor[]>([]);
+  const [fornecedores, setFornecedores] = useState<Fornecedor[]>([]);
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
 
   useEffect(() => {
@@ -85,9 +85,9 @@ function FornecedorPage() {
     setShowForm(true);
   };
 
-  const handleEditButtonClick = (forncedor: Fornecedor) => {
+  const handleEditButtonClick = (fornecedor: Fornecedor) => {
     setShowForm(true);
-    setEditFornecedor(forncedor);
+    setEditFornecedor(fornecedor);
   };
 
   const handleDeleteButtonClick = (fornecedor: Fornecedor) => {
@@ -119,7 +119,7 @@ function FornecedorPage() {
           {alert}
         </div>
       )}
-      <h2>Listagem de Funcionários</h2>
+      <h2>Listagem de Fornecedores</h2>
       <table className="table">
         <thead>
           <tr>
@@ -129,22 +129,22 @@ function FornecedorPage() {
           </tr>
         </thead>
         <tbody>
-          {forncedores.map((forncedor) => (
-            <tr key={forncedor.id}>
-              <td>{forncedor.id}</td>
-              <td>{forncedor.nome}</td>
+          {fornecedores.map((fornecedor) => (
+            <tr key={fornecedor.id}>
+              <td>{fornecedor.id}</td>
+              <td>{fornecedor.nome}</td>
               <td>
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => handleEditButtonClick(forncedor)}
+                  onClick={() => handleEditButtonClick(fornecedor)}
                 >
                   Editar
                 </button>
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => handleDeleteButtonClick(forncedor)}
+                  onClick={() => handleDeleteButtonClick(fornecedor)}
                 >
                   Remover
                 </button>
@@ -166,9 +166,9 @@ function FornecedorPage() {
               aria-label="Close"
               onClick={handleCloseButtonClick}
             ></button>
-            <ForncedorForm
-              addOrEditForncedor={addOrEditFornecedor}
-              editForncedor={editFornecedor}
+            <FornecedorForm
+              addOrEditFornecedor={addOrEditFornecedor}
+              editFornecedor={editFornecedor}
             />
           </div>
         </div>
