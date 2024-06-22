@@ -21,7 +21,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav mr-auto">
           {rolesDictionary[props.userRole!].map((nomeAba) => (
-            <li className="nav-item">
+            <li className="nav-item" key={nomeAba}>
               <button
                 className="nav-link btn btn-link"
                 onClick={() => props.onNavigate(nomeAba)}
@@ -31,38 +31,6 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
               </button>
             </li>
           ))}
-          {/* <li className="nav-item">
-            <button
-              className="nav-link btn btn-link"
-              onClick={() => onNavigate("funcionarios")}
-            >
-              <b>Funcionarios</b>
-            </button>
-          </li>
-          <li className="nav-item">
-            <button
-              className="nav-link btn btn-link"
-              onClick={() => onNavigate("fornecedores")}
-            >
-              <b>Fornecedores</b>
-            </button>
-          </li>
-          <li className="nav-item">
-            <button
-              className="nav-link btn btn-link"
-              onClick={() => onNavigate("clientes")}
-            >
-              <b>Clientes</b>
-            </button>
-          </li>
-          <li className="nav-item">
-            <button
-              className="nav-link btn btn-link"
-              onClick={() => onNavigate("clientes")}
-            >
-              <b>Clientes</b>
-            </button>
-          </li> */}
         </ul>
       </div>
     </nav>
