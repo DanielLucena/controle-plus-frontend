@@ -21,7 +21,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav mr-auto">
           {rolesDictionary[props.userRole!].map((nomeAba) => (
-            <li className="nav-item">
+            <li className="nav-item" key={nomeAba}>
               <button
                 className="nav-link btn btn-link"
                 onClick={() => props.onNavigate(nomeAba)}
