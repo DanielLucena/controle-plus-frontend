@@ -25,9 +25,10 @@ Paginas:
     - [ ] OBS: (estoura erro ao tentar editar somente nome, dizendo que já tem o cpf cadastrado)
   - [ ] Pedido : (apenas formulario de criação)
     - [ ] pagina de formulario(post, put) : Daniel 10/06 - 16/06
-  - [ ] Pagamento : (listagem de pedidos com ação de pagar) Gabriel 18/06 - 24/06
-    - [ ] pagina de listagem
-    - [ ] pagina de formulario(post, put)
+  - [x] Pagamento : (listagem de pedidos com ação de pagar) Gabriel 18/06 - 24/06
+    - [x] pagina de listagem
+    - [x] pagina de formulario(post, put)
+    - [ ] OBS: (refatorar para só aparecer pedidos do próprio cliente)
   - [x] Funcionario : Gabriel 03/06-09/06 (funcional, resta consertar OBS)
     - [x] pagina de listagem
     - [x] pagina de formulario(post, put)

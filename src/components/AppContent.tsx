@@ -93,7 +93,7 @@ const AppContent: React.FC = () => {
       {componentToShow === "funcionarios" && <FuncionarioPage />}
       {componentToShow === "fornecedores" && <FornecedorPage />}
       {componentToShow === "clientes" && <ClientePage />}
-      {componentToShow === "produtos" && <WelcomeContent />}
+      {componentToShow === "produtos" && <ProdutoPage />}
       {componentToShow === "pedidos" && <WelcomeContent />}
       {componentToShow === "pagamentos" && <PagamentoPage />}
       {componentToShow === "remessas" && <WelcomeContent />}
