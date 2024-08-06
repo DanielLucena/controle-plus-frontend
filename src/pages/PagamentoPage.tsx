@@ -27,7 +27,7 @@ const PagamentoPage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request('GET', '/pedido', {});
+        const response = await request('GET', '/api/pedido', {});
         setPedidos(response.data);
       } catch (error: any) {
         if (error.response && error.response.status === 401) {

@@ -19,7 +19,7 @@ const FuncionarioPage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request('GET', '/funcionario', {});
+        const response = await request('GET', '/api/funcionario', {});
         setFuncionarios(response.data);
       } catch (error: any) {
         if (error.response && error.response.status === 401) {
@@ -36,7 +36,7 @@ const FuncionarioPage: React.FC = () => {
   const addOrEditFuncionario = async (funcionario: Funcionario) => {
     if (editFuncionario) {
       try {
-        await request('PUT', "/funcionario/" + funcionario.id, {
+        await request('PUT', "/api/funcionario/" + funcionario.id, {
           nome: funcionario.nome,
           funcao: funcionario.funcao
         });
@@ -46,7 +46,7 @@ const FuncionarioPage: React.FC = () => {
       }
     } else {
       try {
-        await request('POST', '/funcionario', {
+        await request('POST', '/api/funcionario', {
           nome: funcionario.nome,
           funcao: funcionario.funcao
         });

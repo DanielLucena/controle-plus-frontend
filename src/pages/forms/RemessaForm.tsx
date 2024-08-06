@@ -57,13 +57,13 @@ const RemessaForm: React.FC<RemessaFormProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fornecedoresData = await request("GET", "/fornecedor", {});
+        const fornecedoresData = await request("GET", "/api/fornecedor", {});
         setFornecedores(fornecedoresData.data);
 
-        const funcionariosData = await request("GET", "/funcionario", {});
+        const funcionariosData = await request("GET", "/api/funcionario", {});
         setFuncionarios(funcionariosData.data);
 
-        const produtosData = await request("GET", "/produto", {});
+        const produtosData = await request("GET", "/api/produto", {});
         setProdutos(produtosData.data);
       } catch (error: any) {
         console.error("Erro ao carregar os dados: ", error.message);

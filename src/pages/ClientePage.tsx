@@ -19,7 +19,7 @@ const ClientePage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request('GET', '/cliente', {});
+        const response = await request('GET', '/api/cliente', {});
         setClientes(response.data);
       } catch (error: any) {
         if (error.response && error.response.status === 401) {
@@ -36,7 +36,7 @@ const ClientePage: React.FC = () => {
   const addOrEditCliente = async (cliente: Cliente) => {
     if (editCliente) {
       try {
-        await request('PUT', "/cliente/" + cliente.id, {
+        await request('PUT', "/api/cliente/" + cliente.id, {
           nome: cliente.nome,
           cpf: cliente.cpf
         });
@@ -46,7 +46,7 @@ const ClientePage: React.FC = () => {
       }
     } else {
       try {
-        await request('POST', '/cliente', {
+        await request('POST', '/api/cliente', {
           nome: cliente.nome,
           cpf: cliente.cpf
         });

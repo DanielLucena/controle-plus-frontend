@@ -26,7 +26,7 @@ const PedidoForm: React.FC<PedidoFormProps> = ({ addPedido }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request("GET", "/produto", {});
+        const response = await request("GET", "/api/produto", {});
         setProdutos(response.data);
       } catch (error: any) {
         if (error.response.status === 403) {

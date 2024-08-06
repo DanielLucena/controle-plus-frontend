@@ -16,7 +16,7 @@ function FornecedorPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request("GET", "/fornecedor", {});
+        const response = await request("GET", "/api/fornecedor", {});
         setFornecedores(response.data);
       } catch (error: any) {
         if (error.response.status === 401) {
@@ -37,7 +37,7 @@ function FornecedorPage() {
     setAlert(null);
     if (editFornecedor) {
       try {
-        await request("PUT", "/fornecedor/" + fornecedor.id, {
+        await request("PUT", "/api/fornecedor/" + fornecedor.id, {
           nome: fornecedor.nome,
         });
         forceUpdate();
@@ -50,7 +50,7 @@ function FornecedorPage() {
       }
     } else {
       try {
-        await request("POST", "/fornecedor", {
+        await request("POST", "/api/fornecedor", {
           nome: fornecedor.nome,
         });
         forceUpdate();
@@ -69,7 +69,7 @@ function FornecedorPage() {
   const deleteFornecedor = async (fornecedor: Fornecedor) => {
     setAlert(null);
     try {
-      await request("DELETE", "/fornecedor/" + fornecedor.id, {});
+      await request("DELETE", "/api/fornecedor/" + fornecedor.id, {});
       forceUpdate();
     } catch (error) {
       let errorMessage = "not axios error";

@@ -20,7 +20,7 @@ function ProdutoPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request("GET", "/produto", {});
+        const response = await request("GET", "/api/produto", {});
         setProdutoes(response.data);
       } catch (error: any) {
         if (error.response.status === 401) {
@@ -41,7 +41,7 @@ function ProdutoPage() {
     setAlert(null);
     if (editProduto) {
       try {
-        await request("PUT", "/produto/" + produto.id, {
+        await request("PUT", "/api/produto/" + produto.id, {
           nome: produto.nome,
           preco: produto.preco,
           quantidadeEstoque: produto.quantidade,
@@ -53,7 +53,7 @@ function ProdutoPage() {
       }
     } else {
       try {
-        await request("POST", "/produto", {
+        await request("POST", "/api/produto", {
           nome: produto.nome,
           preco: produto.preco,
           quantidadeEstoque: produto.quantidade,
@@ -71,7 +71,7 @@ function ProdutoPage() {
   const deleteProduto = async (produto: Produto) => {
     setAlert(null);
     try {
-      await request("DELETE", "/produto/" + produto.id, {});
+      await request("DELETE", "/api/produto/" + produto.id, {});
       forceUpdate();
     } catch (error) {
       formataAlertErrorMsg(error);

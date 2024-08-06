@@ -44,7 +44,7 @@ function RemessaPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request("GET", "/remessa", {});
+        const response = await request("GET", "/api/remessa", {});
         setRemessas(response.data);
       } catch (error: any) {
         if (error.response.status === 401) {
@@ -69,7 +69,7 @@ function RemessaPage() {
     setAlert(null);
     try {
       if (editRemessa) {
-        await request("PUT", `/remessa/${editRemessa.id}`, {
+        await request("PUT", `/api/remessa/${editRemessa.id}`, {
           fornecedorId: remessa.fornecedorId,
           funcionarioId: remessa.funcionarioId,
           itens: remessa.itens.map(item => ({
@@ -78,7 +78,7 @@ function RemessaPage() {
           }))
         });
       } else {
-        await request("POST", "/remessa", {
+        await request("POST", "/api/remessa", {
           fornecedorId: remessa.fornecedorId,
           funcionarioId: remessa.funcionarioId,
           itens: remessa.itens.map(item => ({
@@ -113,7 +113,7 @@ function RemessaPage() {
   const handleDeleteButtonClick = async (id: number) => {
     setAlert(null);
     try {
-      await request("DELETE", `/remessa/${id}`, {});
+      await request("DELETE", `/api/remessa/${id}`, {});
       forceUpdate(); 
     } catch (error: any) {
       setAlert(`Erro ao excluir remessa: ${error.message}`);

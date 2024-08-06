@@ -11,7 +11,7 @@ const AuthContent: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request("GET", "/fornecedor",{});
+        const response = await request("GET", "/api/fornecedor",{});
         setData(response.data);
       } catch (error: any) {
         if (error.response.status === 401) {

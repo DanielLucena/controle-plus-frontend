@@ -36,7 +36,7 @@ function PedidoPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request("GET", "/pedido", {});
+        const response = await request("GET", "/api/pedido", {});
         setPedidos(response.data);
       } catch (error: any) {
         if (error.response.status === 401) {
@@ -56,7 +56,7 @@ function PedidoPage() {
   const addPedido = async (pedido: PedidoItem[], cpfCliente: string) => {
     setAlert(null);
     try {
-      await request("POST", "/pedido", {
+      await request("POST", "/api/pedido", {
         cpfCliente: cpfCliente,
         usandoCashback: false,
         itens: pedido,

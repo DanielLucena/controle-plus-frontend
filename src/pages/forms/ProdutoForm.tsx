@@ -43,7 +43,7 @@ const ProdutoForm: React.FC<ProdutoFormProps> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request("GET", "/fornecedor", {});
+        const response = await request("GET", "/api/fornecedor", {});
         setFornecedores(response.data);
       } catch (error: any) {
         if (error.response.status === 403) {

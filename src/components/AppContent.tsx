@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { request, setAuthHeader } from "../helpers/axios_helper";
+import queryString from 'query-string';
 
 import Buttons from "./Buttons";
 import AuthContent from "./AuthContent";
@@ -14,6 +15,7 @@ import ProdutoPage from "../pages/ProdutoPage";
 import PedidoPage from "../pages/PedidoPage";
 import RemessaPage from "../pages/RemessaPage";
 import NavBar from './NavBar';
+import axios from "axios";
 
 const AppContent: React.FC = () => {
   const [componentToShow, setComponentToShow] = useState<string>("welcome");
@@ -39,12 +41,23 @@ const AppContent: React.FC = () => {
   ) => {
     e.preventDefault();
     try {
-      const response = await request("POST", "/usuario/auth", {
-        login: username,
-        senha: senha,
-      });
+      const response = await axios.post("http://localhost:8083" + "/oauth/oauth/token",
+        queryString.stringify({
+                username: username, //gave the values directly for testing
+                password: senha,
+                grant_type: 'password'
+        }), {
+          headers: { 
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        });
+      // const response = await request("POST", "/oauth/oauth/token", {
+      //   login: username,
+      //   senha: senha,
+      //});
       setAuthHeader(response.data.token);
-      setUserRole(response.data.role);
+      // setUserRole(response.data.role);
+      setUserRole("gerente");
       setIsLoggedIn(true);
       setUsername(username);
       setComponentToShow("loggedInWelcome");
@@ -62,7 +75,7 @@ const AppContent: React.FC = () => {
   ) => {
     e.preventDefault();
     try {
-      const response = await request("POST", "/usuario", {
+      const response = await request("POST", "/api/usuario", {
         login: username,
         senha: senha,
         role: role,
