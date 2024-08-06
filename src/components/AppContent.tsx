@@ -11,6 +11,8 @@ import FornecedorPage from "../pages/FornecedorPage";
 import ClientePage from "../pages/ClientePage";
 import PagamentoPage from '../pages/PagamentoPage';
 import ProdutoPage from "../pages/ProdutoPage";
+import PedidoPage from "../pages/PedidoPage";
+import RemessaPage from "../pages/RemessaPage";
 import NavBar from './NavBar';
 
 const AppContent: React.FC = () => {
@@ -94,9 +96,9 @@ const AppContent: React.FC = () => {
       {componentToShow === "fornecedores" && <FornecedorPage />}
       {componentToShow === "clientes" && <ClientePage />}
       {componentToShow === "produtos" && <ProdutoPage />}
-      {componentToShow === "pedidos" && <WelcomeContent />}
+      {componentToShow === "pedidos" && <PedidoPage />}
       {componentToShow === "pagamentos" && <PagamentoPage />}
-      {componentToShow === "remessas" && <WelcomeContent />}
+      {componentToShow === "remessas" && <RemessaPage />}
     </>
   );
 };
